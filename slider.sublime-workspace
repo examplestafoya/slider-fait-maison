@@ -1,0 +1,402 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+			[
+				"tout",
+				"toutesLesTaches"
+			],
+			[
+				"tou",
+				"toutesLesTaches"
+			],
+			[
+				"or",
+				"or"
+			],
+			[
+				"cou",
+				"coupsParPartie"
+			],
+			[
+				"labyrinthe",
+				"labyrinthe"
+			],
+			[
+				"capacity",
+				"capacity"
+			],
+			[
+				"num",
+				"num"
+			],
+			[
+				"back",
+				"background-color"
+			],
+			[
+				"p",
+				"p	padding"
+			]
+		]
+	},
+	"buffers":
+	[
+		{
+			"file": "index.html",
+			"settings":
+			{
+				"buffer_size": 985,
+				"line_ending": "Unix",
+				"name": "<!DOCTYPE html>"
+			}
+		},
+		{
+			"contents": "var timer;\nvar currentImg=0;\nvar tabImg=[\n	[\"images/1.jpg\", \"first image\", \"Chat belleville, Paris\"],\n	[\"images/2.jpg\",	\"second image\", \"Bitch I'm from chicago\"],\n	[\"images/3.jpg\", \"third image\", \"Chalmers\"],\n	[\"images/4.jpg\", \"fourth image\", \"New York City lights\"],\n	[\"images/5.jpg\",	\"fifth image\", \"Shang-hai\"],\n	[\"images/6.jpg\",	\"sixth image\", \"Paris\"]\n];\n\nvar img = document.getElementById(\"image\");\nvar suivant=document.querySelector(\"#suivant\");\nvar precedent=document.querySelector(\"#precedent\");\nvar numImage=document.querySelector(\"figureCaption\");\nvar random=document.querySelector(\"#random\");\nvar firstPage=document.querySelector(\"#firstpage\");\nvar lastPage=document.querySelector(\"#lastpage\");\nvar play=document.querySelector(\"#play\");\nvar stop=document.querySelector(\"#stop\");\nvar hide=document.querySelector(\"#hide\");\nvar deleteImage=document.querySelector(\"#deleteimage\");\nvar bullets=document.querySelector(\"#bullets\");\n\n\n\n\nvar numMax=tabImg.length;\n\n\nvar newImage=document.querySelector(\"#newImage\");\nvar imageURL=document.querySelector(\"#imageURL\");\nvar imageDescription=document.querySelector(\"#imageDescription\");\nvar hidden=false;\n\nchangeImage();\n\nfunction changeImage()\n{\n	img.setAttribute('src', tabImg[currentImg][0]);\n	img.setAttribute('alt', tabImg[currentImg][1]);\n	numImage.innerHTML= currentImg+1+'/'+tabImg.length;\n	addbullets();\n}\n\nfunction addbullets()\n{\n	bullets.innerHTML=\"\";\n	for (var i=0; i<currentImg; i++){\n		bullets.innerHTML=bullets.innerHTML + \"o\";\n	}\n	bullets.innerHTML=bullets.innerHTML+\"O\"\n	\n	for (var i=currentImg+1; i<numMax; i++){\n		bullets.innerHTML=bullets.innerHTML +\"o\"\n	}\n\n}\n\n\nhide.onclick=function(){\n	if (hidden==false){\n		console.log(play);\n		play.innerHTML=\"\";\n		random.innerHTML=\"\";\n		stop.innerHTML=\"\";\n		hide.innerHTML=\"show buttons\";\n		hidden=true;\n	}else if (hidden==true){\n		console.log(play);\n		play.innerHTML=\"play\";\n		random.innerHTML=\"random\";\n		stop.innerHTML=\"stop\";\n		hide.innerHTML=\"hide buttons below\";\n		hidden=false;\n	}\n}\n\ndeleteImage.onclick=function(){\n	console.log(deleteImage);\n	console.log(currentImg);\n	tabImg.splice(currentImg, 1);\n	numMax-=1;\n	changeImage();\n}\n\nnewImage.onclick=function(){\n	console.log(imageDescription.value);\n	console.log(imageURL.value);\n	tabImg.push([imageURL.value, \"\",imageDescription.value ]);\n	numMax+=1;\n	changeImage();\n}\n\n\n\nplay.onclick=function(){\n	console.log('play');\n	timer = setInterval(function(){ currentImg+=1; \n		if (currentImg>numMax-1) {\n    currentImg=0;\n		}	\n		changeImage(); }, 3000);\n}\n\nstop.onclick=function(){\n	console.log('stop');\n	clearInterval(timer);\n}\n\nimg.onclick=function(){\n	numImage.innerHTML= currentImg+1+'/'+tabImg.length +'  '+tabImg[currentImg][2];\n}\n\nfirstPage.onclick=function(){ \n	currentImg=0;\n	changeImage();\n}\n\nlastPage.onclick=function(){ \n	currentImg=numMax-1;\n	changeImage();\n}\n\n\n\nprecedent.onclick=function(){ \n	currentImg-=1;\n	//if (currentImg<0{currentImg=6})\n	if (currentImg<0) {\n    currentImg=numMax-1;\n		}\n	changeImage();\n}\n\n\nsuivant.onclick=function(){ \n	currentImg+=1;\n	// if (currentImg==6{currentImg=0;})\n	if (currentImg>numMax-1) {\n    currentImg=0;\n		}\n	changeImage();\n}\n\nrandom.onclick=function(){\n	var oldCurrentImg = currentImg;\n	do \n	{\n		currentImg = Math.floor((Math.random() * 6));\n	} while(currentImg == oldCurrentImg)\n	console.log(currentImg);\n	changeImage();\n}\n\nfunction anim(e){\n\n	if(e.keyCode==39){\n		console.log('right');\n		currentImg+=1;\n	// if (currentImg==6{currentImg=0;})\n	if (currentImg>numMax-1) {\n    currentImg=0;\n		}\n	changeImage();\n		}\n	if(e.keyCode==37){\n		console.log('left');\n		currentImg-=1;\n		//if (currentImg<0{currentImg=6})\n		if (currentImg<0) {\n    currentImg=numMax-1;\n			}\n		changeImage();\n		}\n}\n\ndocument.onkeydown = anim;\n\n/*\ndocument.querySelector(\"#link\").addEventListener(\"click\", function(event)\n{\n	event.preventDefault();\n	console.log(\"je clique sur le lien\");\n});\n*/\n",
+			"file": "js/app.js",
+			"file_size": 3870,
+			"file_write_time": 1434554881000000,
+			"settings":
+			{
+				"buffer_size": 3872,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "css/style.css",
+			"settings":
+			{
+				"buffer_size": 188,
+				"line_ending": "Unix"
+			}
+		}
+	],
+	"build_system": "",
+	"command_palette":
+	{
+		"height": 75.0,
+		"selected_items":
+		[
+			[
+				"install",
+				"Package Control: Install Package"
+			]
+		],
+		"width": 449.0
+	},
+	"console":
+	{
+		"height": 139.0
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"file_history":
+	[
+		"/home/wap57/sites/dom/js/app.js",
+		"/home/wap57/sites/arrowsJS/js/app.js",
+		"/home/wap57/sites/labor/header.php",
+		"/home/wap57/sites/todolist/css/style.css",
+		"/home/wap57/sites/todolist/page.phtml",
+		"/home/wap57/sites/labor/footer.php",
+		"/home/wap57/sites/labor/index.php",
+		"/home/wap57/sites/kurimanzutto/css/style.css",
+		"/home/wap57/sites/labor/index-old.html",
+		"/home/wap57/sites/kurimanzutto/index.php",
+		"/home/wap57/sites/labor/css/style.css",
+		"/home/wap57/sites/labor/index.html",
+		"/home/wap57/sites/kurimanzutto/js/slider.js",
+		"/home/wap57/sites/arrowsJS/page.html",
+		"/home/wap57/sites/kurimanzutto/js/js/application.js",
+		"/home/wap57/Bureau/social.png",
+		"/home/wap57/sites/8 - blue-master/index.php",
+		"/home/wap57/sites/wonder/style.css",
+		"/home/wap57/sites/wonder/style .css",
+		"/home/wap57/sites/wonder/index-old.html",
+		"/home/wap57/sites/instavids/css/style.css",
+		"/home/wap57/sites/instavids/index.html",
+		"/home/wap57/sites/todolist/index.php",
+		"/home/wap57/arrowsJS/css/style.css",
+		"/home/wap57/arrowsJS/js/app.js",
+		"/home/wap57/sites/instavids/js/jquery.js",
+		"/home/wap57/sites/projectwp1206/wp-content/themes/minnow/js/arrowsJS/js/app.js",
+		"/home/wap57/arrowsJS/page.html",
+		"/home/wap57/sites/projectwp1206/wp-content/themes/minnow/functions.php",
+		"/home/wap57/sites/projectwp1206/wp-content/themes/sundance/functions.php",
+		"/home/wap57/sites/blueboot/bootstrap/css/bootstrap.css",
+		"/home/wap57/sites/blueboot/bootstrap/js/bootstrap.js",
+		"/home/wap57/sites/blueboot/8 - blue-master/css/style.css",
+		"/home/wap57/sites/todolist-maison/firstexample/page.phtml",
+		"/home/wap57/sites/todolist-maison/firstexample/index.php",
+		"/home/wap57/sites/todolist-maison/firstexample/css/style.css",
+		"/home/wap57/sites/todolist/supprimer.php",
+		"/home/wap57/sites/todolist/ajout.php",
+		"/home/wap57/sites/todolist/supprimertout.php",
+		"/home/wap57/sites/8 - blue-master/header.php",
+		"/home/wap57/sites/todolist/data.csv",
+		"/home/wap57/sites/traducteur/resultat.php",
+		"/home/wap57/sites/moteurderecherche/index.php",
+		"/home/wap57/sites/get-post/page.phtml",
+		"/home/wap57/sites/get-post/resultat.phtml",
+		"/home/wap57/sites/moteurderecherche/page.phtml",
+		"/home/wap57/sites/get-post/index.php",
+		"/home/wap57/sites/Imitation Game start/index.html",
+		"/home/wap57/sites/Imitation Game start/main.js",
+		"/home/wap57/sites/get-post/double.phtml",
+		"/home/wap57/sites/application/index.php",
+		"/home/wap57/laphrase/css/style.css",
+		"/home/wap57/laphrase/page",
+		"/home/wap57/laphrase/js/laby.js",
+		"/home/wap57/new/index.html",
+		"/home/wap57/new/css/style.css",
+		"/home/wap57/Téléchargements/style (3).css",
+		"/home/wap57/Téléchargements/style (2).css",
+		"/home/wap57/sites/page.phtml",
+		"/home/wap57/sites/application/css/style.css",
+		"/home/wap57/Bureau/jeu-aleatoire/exercice-6-full.html",
+		"/home/wap57/Bureau/jeu-aleatoire/game.func.js",
+		"/home/wap57/Bureau/jeu-aleatoire/exercice-6-full.js",
+		"/home/wap57/sites/wordpress/wp-content/themes/twentyfifteen-child/functions.php",
+		"/home/wap57/Téléchargements/style (1).css",
+		"/home/wap57/sites/wordpress/wp-content/themes/twentyfifteen-child/style.css",
+		"/home/wap57/sites/wordpress/wp-content/themes/twentyfifteen/single.php",
+		"/home/wap57/sites/wordpress/wp-content/themes/twentyfifteen-child/content.php",
+		"/home/wap57/Téléchargements/style.css",
+		"/home/wap57/sites/wordpress/wp-content/themes/html5blank-stable/page.php",
+		"/home/wap57/sites/wordpress/wp-content/themes/html5blank-stable/functions.php",
+		"/home/wap57/sites/wordpress/wp-content/themes/html5blank-stable/footer.php",
+		"/home/wap57/sites/wordpress/wp-content/themes/html5blank-stable/sidebar-single.php",
+		"/home/wap57/sites/wordpress/wp-content/themes/html5blank-stable/home.php",
+		"/home/wap57/sites/wordpress/wp-content/themes/html5blank-stable/single.php",
+		"/home/wap57/sites/wordpress/wp-content/themes/html5blank-stable/page_cgu.php",
+		"/home/wap57/sites/wordpress/wp-content/themes/html5blank-stable/index.php",
+		"/home/wap57/sites/wordpress/wp-content/themes/julio/single.php",
+		"/home/wap57/sites/wordpress/wp-content/themes/julio/template-parts/content-single.php",
+		"/home/wap57/sites/wordpress/wp-content/themes/twentyfifteen/sidebar.php",
+		"/home/wap57/sites/wordpress/juliotafoyafirst.sublime-project",
+		"/home/wap57/sites/wordpress/wp-content/themes/twentyfifteen/index.php",
+		"/home/wap57/sites/wordpress/wordpress.sublime-workspace",
+		"/home/wap57/sites/8 - blue-master/css/style.css",
+		"/home/wap57/alea/page.html",
+		"/home/wap57/alea/js/app.js",
+		"/home/wap57/fonctionsJS/js/app.js",
+		"/home/wap57/objetvoitureJS/js/app.js",
+		"/home/wap57/horloge/page.html",
+		"/home/wap57/horloge/js/app.js",
+		"/home/wap57/objetvoitureJS/page.html",
+		"/home/wap57/loops/js/loopsexamples.js",
+		"/home/wap57/objetvoitureJS/js/biblioteque.js",
+		"/home/wap57/fonctionsJS/page.html",
+		"/home/wap57/loops/js/appwhileswitch.js",
+		"/home/wap57/FruitsJS/js/tableau2.js",
+		"/home/wap57/laphrase/js/laphrase.js",
+		"/home/wap57/FruitsJS/page.html",
+		"/home/wap57/tableauJS/js/tableau.js",
+		"/home/wap57/tableauJS/js/opp.js",
+		"/home/wap57/tableauJS/page.html",
+		"/home/wap57/sites/8 - blue-master/footer.php",
+		"/home/wap57/sites/8 - blue-master/sidebar.php",
+		"/home/wap57/sites/8 - blue-master/category.php",
+		"/home/wap57/sites/8 - blue-master/home-article.php",
+		"/home/wap57/sites/8 - blue-master/menu.php",
+		"/home/wap57/sites/8 - blue-master/oldindex.html",
+		"/home/wap57/.config/sublime-text-2/Packages/Default/Preferences.sublime-settings",
+		"/home/wap57/.config/sublime-text-2/Packages/User/Preferences.sublime-settings",
+		"/home/wap57/sites/8 - blue-master/index.html",
+		"/home/wap57/Téléchargements/index.php",
+		"/home/wap57/loops/js/cs_loops.js",
+		"/home/wap57/loops/loops.html",
+		"/home/wap57/Bureau/app.js",
+		"/home/wap57/Bureau/appwhileswitch.js",
+		"/home/wap57/loops/js/loops.js",
+		"/home/wap57/loops/index.html"
+	],
+	"find":
+	{
+		"height": 35.0
+	},
+	"find_in_files":
+	{
+		"height": 0.0,
+		"where_history":
+		[
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": false,
+		"find_history":
+		[
+			"last-child\n	",
+			"\n	",
+			"text-inde",
+			"20px"
+		],
+		"highlight": true,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": false,
+		"replace_history":
+		[
+		],
+		"reverse": false,
+		"show_context": true,
+		"use_buffer2": true,
+		"whole_word": false,
+		"wrap": true
+	},
+	"groups":
+	[
+		{
+			"selected": 1,
+			"sheets":
+			[
+				{
+					"buffer": 0,
+					"file": "index.html",
+					"settings":
+					{
+						"buffer_size": 985,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								452,
+								452
+							]
+						],
+						"settings":
+						{
+							"auto_name": "<!DOCTYPE html>",
+							"syntax": "Packages/HTML/HTML.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"file": "js/app.js",
+					"settings":
+					{
+						"buffer_size": 3872,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								1493,
+								1493
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 727.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 2,
+					"file": "css/style.css",
+					"settings":
+					{
+						"buffer_size": 188,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								158,
+								158
+							]
+						],
+						"settings":
+						{
+							"auto_name": "",
+							"syntax": "Packages/CSS/CSS.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				}
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 0.0
+	},
+	"input":
+	{
+		"height": 34.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"replace":
+	{
+		"height": 0.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 0.0,
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"show_minimap": true,
+	"show_open_files": true,
+	"show_tabs": true,
+	"side_bar_visible": true,
+	"side_bar_width": 215.0,
+	"status_bar_visible": true
+}
